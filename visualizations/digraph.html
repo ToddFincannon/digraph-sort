@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>
+            Directed Graph
+        </title>
+        <script src="g.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.20.1/vis.min.js" type="text/javascript"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.20.1/vis.min.css" type="text/css" />
+    </head>
+
+    <body>
+        <div id="mynetwork"></div>
+        <script type="text/javascript">
+        ;(function() {
+          let g_nodes = []
+          let g_edges = []
+          for (let node of g) {
+            g_nodes.push({
+              id: node.v,
+              label: node.v.toString()
+            })
+            for (let w of node.adj) {
+              g_edges.push({
+                from: node.v,
+                to: w,
+                arrows: 'to'
+              })
+            }
+          }
+
+          let container = document.getElementById('mynetwork')
+          let nodes = new vis.DataSet(g_nodes)
+          let edges = new vis.DataSet(g_edges)
+          let data = {
+            nodes: nodes,
+            edges: edges
+          }
+          let options = {}
+          let network = new vis.Network(container, data, options)
+        })()
+        </script>
+    </body>
+</html>
