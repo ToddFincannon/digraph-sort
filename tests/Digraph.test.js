@@ -9,6 +9,11 @@ describe('Digraph', () => {
   H.addEdge(1, 2)
   H.addEdge(1, 3)
   H.addEdge(2, 3)
+  let K = new Digraph()
+  let L = new Digraph()
+  let c = ['a', 'b', 'c']
+  L.addEdge(c[0], c[2])
+  L.addEdge(c[0], c[1])
 
   test('constructor saves number of vertices', () => {
     expect(G.V).toBe(3)
@@ -40,8 +45,19 @@ describe('Digraph', () => {
   test('tinyDG outdegree', () => {
     expect(D.outdegree(9)).toBe(2)
   })
-  test('digraph constructed with no args has zero vertices',() => {
-    let K = new Digraph()
+  test('digraph constructed with no args has zero vertices', () => {
     expect(K.V).toBe(0)
+  })
+  test('digraph constructed with values has the correct number of vertices', () => {
+    expect(L.V).toBe(3)
+  })
+  test('digraph constructed with values has the correct number of edges', () => {
+    expect(L.E).toBe(2)
+  })
+  test('digraph constructed with values graph listing', () => {
+    expect(L.toString()).toBe('3 vertices, 2 edges\n0: 2 1 \n1: \n2: \n')
+  })
+  test('digraph values listing', () => {
+    expect(L.values).toEqual(['a', 'c', 'b'])
   })
 })
