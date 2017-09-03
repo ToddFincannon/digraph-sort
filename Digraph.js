@@ -1,8 +1,8 @@
 class Digraph {
-  constructor(V) {
+  constructor(V = 0) {
     this.V = V
     this.E = 0
-    this.indegree = new Array(V).fill(0)
+    this.indeg = new Array(V).fill(0)
     this.adj = new Array(V)
     for (let v = 0; v < V; v++) {
       this.adj[v] = []
@@ -12,9 +12,12 @@ class Digraph {
     // Filter out parallel edges and self edges.
     if (v !== w && this.adj[v].includes(w) === false) {
       this.adj[v].unshift(w)
-      this.indegree[w]++
+      this.indeg[w]++
       this.E++
     }
+  }
+  indegree(v) {
+    return this.indeg[v]
   }
   outdegree(v) {
     return this.adj[v].length
