@@ -4,11 +4,21 @@
 
 class TopologicalOrder {
   constructor(G, sources = null) {
+    this.G = G
     this.marked = new Array(G.V).fill(false)
     this.postorder = []
+    let dfs = (G, v) => {
+      this.marked[v] = true
+      for (let w of G.adj[v]) {
+        if (!this.marked[w]) {
+          dfs(G, w)
+        }
+      }
+      this.postorder.push(v)
+    }
     let dfsFromV = v => {
       if (!this.marked[v]) {
-        this.dfs(G, v)
+        dfs(G, v)
       }
     }
     if (sources) {
@@ -24,14 +34,14 @@ class TopologicalOrder {
     }
     this.order = this.postorder.slice().reverse()
   }
-  dfs(G, v) {
-    this.marked[v] = true
-    for (let w of G.adj[v]) {
-      if (!this.marked[w]) {
-        this.dfs(G, w)
-      }
-    }
-    this.postorder.push(v)
+  reversedVertices() {
+    return this.postorder
+  }
+  reversedValues() {
+    return this.postorder.map(v => this.G.values[v])
+  }
+  dependencyOrder() {
+    return this.reversedValues()
   }
 }
 

@@ -15,7 +15,7 @@ let cmds = [
   'symboldigraph',
   'topological',
   'topologicalsymbol',
-  'toposort',
+  'topologicalorder',
   'visdata'
 ]
 
@@ -111,7 +111,7 @@ if (cmd === 'topological') {
   }
 }
 
-if (cmd === 'toposort') {
+if (cmd === 'topologicalorder') {
   if (!arg1) {
     usage()
   }
