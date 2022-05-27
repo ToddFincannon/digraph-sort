@@ -21,7 +21,7 @@
     "url": "https://github.com/ToddFincannon/digraph-sort/issues"
   },
   "dependencies": {
-    "fs-extra": "^7.0.1",
+    "fs-extra": "^8.0.0",
     "voca": "^1.4.0"
   },
   "devDependencies": {
